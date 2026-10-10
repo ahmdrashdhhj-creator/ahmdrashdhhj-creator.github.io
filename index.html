@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#14532d">
+<meta name="description" content="أحمد راشد - أذكار الصباح والمساء، أدعية من القرآن والسنة، وآيات قرآنية مع عدّاد للأذكار.">
+<meta name="robots" content="index,follow">
+<title>أحمد راشد | الأذكار والأدعية</title>
+<style>
+:root{--green:#14532d;--green2:#166534;--gold:#d6ad45;--cream:#fffdf5;--ink:#24352a;--muted:#647466;--line:#e6e9df}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:Tahoma,Arial,sans-serif;line-height:1.9}
+header{background:linear-gradient(135deg,#10452a,#1d6a3c);color:#fff;padding:30px 16px 25px;text-align:center;border-bottom:4px solid var(--gold)}
+.logo{width:62px;height:62px;border:2px solid var(--gold);border-radius:50%;display:grid;place-items:center;margin:0 auto 10px;font-size:29px;color:#f7df91}
+h1{font-size:clamp(1.6rem,5vw,2.3rem);margin:0}header p{margin:5px 0 0;color:#e8f2e8}
+nav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:12px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+nav a{color:var(--green);text-decoration:none;border:1px solid #d8e4d6;border-radius:22px;padding:6px 12px;font-size:.9rem}
+main{max-width:850px;margin:22px auto;padding:0 14px}
+.hero,.section,.dhikr{background:white;border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:15px;box-shadow:0 4px 16px #183a1608}
+.hero{text-align:center;background:linear-gradient(120deg,#f8f5e8,#f0f7ed);border-color:#e5d9ad}
+.hero h2{color:var(--green);margin:0 0 5px}.hero p{margin:0;color:var(--muted)}
+h2{font-size:1.35rem;color:var(--green);margin:0 0 12px}h3{margin:0 0 8px;color:var(--green)}
+.section-intro{color:var(--muted);margin-top:-6px}
+.dhikr{padding:16px}.dhikr-text{font-size:1.12rem;line-height:2.1;margin:8px 0 12px}.source{font-size:.82rem;color:var(--muted)}
+.actions{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:12px}
+button{font:inherit;border:0;border-radius:12px;padding:9px 14px;cursor:pointer}
+.count{background:var(--green);color:white;min-width:115px}.reset{background:#f2f4ee;color:var(--green);border:1px solid #dfe7db}
+.progress{height:7px;background:#edf0e8;border-radius:9px;overflow:hidden;margin-top:12px}.bar{height:100%;background:var(--gold);width:0;transition:width .2s}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}.tab{background:#eef4eb;color:var(--green)}.tab.active{background:var(--green);color:white}
+.hidden{display:none!important}.ayah{background:#f8f6eb;border-right:4px solid var(--gold);padding:14px;border-radius:10px;margin:10px 0;font-size:1.12rem}
+footer{text-align:center;color:var(--muted);padding:25px 12px;font-size:.9rem}footer strong{color:var(--green)}
+.small{font-size:.86rem;color:var(--muted)}.toplink{color:var(--green)}
+@media(min-width:650px){main{padding:0 20px}.dhikr{padding:20px}.hero{padding:25px}}
+</style>
+</head>
+<body>
+<header id="top">
+  <div class="logo" aria-hidden="true">أ</div>
+  <h1>أحمد راشد</h1>
+  <p>الأذكار والأدعية والآيات القرآنية</p>
+</header>
+<nav aria-label="التنقل الرئيسي">
+  <a href="#adhkar">الأذكار</a><a href="#duaa">الأدعية</a><a href="#quran">آيات قرآنية</a>
+</nav>
+<main>
+  <section class="hero">
+    <h2>﴿ أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ ﴾</h2>
+    <p>ابدأ يومك بذكر الله، واجعل لك وردًا من القرآن والدعاء.</p>
+  </section>
+
+  <section class="section" id="adhkar">
+    <h2>🌿 أذكار الصباح والمساء</h2>
+    <p class="section-intro">اختر الفترة، ثم اضغط «تم الذكر» لتسجيل ما قرأته. العداد يعمل على هذا الجهاز.</p>
+    <div class="tabs">
+      <button class="tab active" data-period="morning">أذكار الصباح</button>
+      <button class="tab" data-period="evening">أذكار المساء</button>
+    </div>
+    <div id="dhikr-list"></div>
+    <button class="reset" id="reset-period">إعادة عدادات هذه الفترة</button>
+    <p class="small">تنبيه: هذه مجموعة بداية وليست حصرًا لجميع الأذكار. راجع مصدرًا موثوقًا للتثبت من الألفاظ والأعداد.</p>
+  </section>
+
+  <section class="section" id="duaa">
+    <h2>🤲 أدعية من القرآن والسنة</h2>
+    <div class="ayah"><div>﴿ رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ ﴾</div><div class="source">سورة البقرة، الآية 201</div></div>
+    <div class="ayah"><div>﴿ رَبِّ زِدْنِي عِلْمًا ﴾</div><div class="source">سورة طه، الآية 114</div></div>
+    <div class="ayah"><div>«اللَّهُمَّ إِنِّي أَسْأَلُكَ الْهُدَى وَالتُّقَى وَالْعَفَافَ وَالْغِنَى»</div><div class="source">صحيح مسلم</div></div>
+    <div class="ayah"><div>«اللَّهُمَّ أَصْلِحْ لِي دِينِيَ الَّذِي هُوَ عِصْمَةُ أَمْرِي، وَأَصْلِحْ لِي دُنْيَايَ الَّتِي فِيهَا مَعَاشِي، وَأَصْلِحْ لِي آخِرَتِيَ الَّتِي فِيهَا مَعَادِي»</div><div class="source">صحيح مسلم</div></div>
+  </section>
+
+  <section class="section" id="quran">
+    <h2>📖 آيات قرآنية</h2>
+    <div class="ayah"><div>﴿ اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ﴾</div><div class="source">سورة البقرة، الآية 255 — بداية آية الكرسي</div></div>
+    <div class="ayah"><div>﴿ قُلْ هُوَ اللَّهُ أَحَدٌ ۝ اللَّهُ الصَّمَدُ ۝ لَمْ يَلِدْ وَلَمْ يُولَدْ ۝ وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ ﴾</div><div class="source">سورة الإخلاص</div></div>
+    <div class="ayah"><div>﴿ وَهُوَ مَعَكُمْ أَيْنَ مَا كُنْتُمْ ۚ وَاللَّهُ بِمَا تَعْمَلُونَ بَصِيرٌ ﴾</div><div class="source">سورة الحديد، الآية 4</div></div>
+  </section>
+  <p class="small">هذا الموقع خيري وتعليمي، ومحتواه ثابت داخل الصفحة ولا يحتاج إلى تسجيل دخول.</p>
+  <p><a class="toplink" href="#top">↑ العودة إلى أعلى الصفحة</a></p>
+</main>
+<footer><strong>أحمد راشد</strong><br>اللهم اجعل هذا العمل نافعًا ومتقبلًا.</footer>
+<script>
+const data = {
+ morning: [
+  {text:"أصبحنا وأصبح الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير. رب أسألك خير ما في هذا اليوم وخير ما بعده، وأعوذ بك من شر ما في هذا اليوم وشر ما بعده.",n:1,source:"من أذكار الصباح"},
+  {text:"اللهم بك أصبحنا، وبك أمسينا، وبك نحيا، وبك نموت، وإليك النشور.",n:1,source:"ذكر الصباح"},
+  {text:"رضيت بالله ربًا، وبالإسلام دينًا، وبمحمد ﷺ نبيًا.",n:3,source:"يقال ثلاث مرات"},
+  {text:"سبحان الله وبحمده.",n:100,source:"يقال مائة مرة"},
+  {text:"قراءة سورة الإخلاص وسورتي الفلق والناس.",n:3,source:"كل سورة ثلاث مرات"}
+ ],
+ evening: [
+  {text:"أمسينا وأمسى الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير. رب أسألك خير ما في هذه الليلة وخير ما بعدها، وأعوذ بك من شر ما في هذه الليلة وشر ما بعدها.",n:1,source:"من أذكار المساء"},
+  {text:"اللهم بك أمسينا، وبك أصبحنا، وبك نحيا، وبك نموت، وإليك المصير.",n:1,source:"ذكر المساء"},
+  {text:"رضيت بالله ربًا، وبالإسلام دينًا، وبمحمد ﷺ نبيًا.",n:3,source:"يقال ثلاث مرات"},
+  {text:"سبحان الله وبحمده.",n:100,source:"يقال مائة مرة"},
+  {text:"قراءة سورة الإخلاص وسورتي الفلق والناس.",n:3,source:"كل سورة ثلاث مرات"}
+ ]
+};
+let period="morning"; const counts={morning:{},evening:{}};
+const list=document.getElementById("dhikr-list");
+function render(){
+ list.innerHTML="";
+ data[period].forEach((item,i)=>{
+  const current=counts[period][i]||0, done=current>=item.n;
+  const card=document.createElement("article");card.className="dhikr";
+  const h=document.createElement("h3");h.textContent=`${i+1}. الذكر ${done?"✓":""}`;
+  const p=document.createElement("p");p.className="dhikr-text";p.textContent=item.text;
+  const source=document.createElement("div");source.className="source";source.textContent=item.source;
+  const actions=document.createElement("div");actions.className="actions";
+  const btn=document.createElement("button");btn.className="count";btn.textContent=done?"اكتمل الذكر":`تم الذكر (${current}/${item.n})`;btn.disabled=done;
+  btn.addEventListener("click",()=>{counts[period][i]=Math.min(item.n,(counts[period][i]||0)+1);render()});
+  const reset=document.createElement("button");reset.className="reset";reset.textContent="تصفير";reset.addEventListener("click",()=>{counts[period][i]=0;render()});
+  actions.append(btn,reset);
+  const progress=document.createElement("div");progress.className="progress";
+  const bar=document.createElement("div");bar.className="bar";bar.style.width=`${Math.min(100,current/item.n*100)}%`;progress.append(bar);
+  card.append(h,p,source,actions,progress);list.append(card);
+ });
+}
+document.querySelectorAll("[data-period]").forEach(btn=>btn.addEventListener("click",()=>{
+ period=btn.dataset.period;document.querySelectorAll("[data-period]").forEach(b=>b.classList.toggle("active",b===btn));render();
+}));
+document.getElementById("reset-period").addEventListener("click",()=>{counts[period]={};render()});
+render();
+</script>
+</body>
+</html>
